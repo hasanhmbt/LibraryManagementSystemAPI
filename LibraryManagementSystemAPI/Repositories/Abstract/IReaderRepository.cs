@@ -11,7 +11,7 @@ namespace LibraryManagementSystemAPI.Repositories.Abstract
     public interface IReaderRepository
     {
         List<Reader> GetAllReaders();
-        List<Reader> GetReadersCombo();
+        List<DropdownItems> GetReadersCombo();
         Reader GetReaderById(int id);
         void DeleteReaders(int readerId);
         int AddReader(Reader reader);

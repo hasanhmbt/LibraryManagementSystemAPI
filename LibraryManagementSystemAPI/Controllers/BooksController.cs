@@ -18,6 +18,8 @@ namespace LibraryManagementSystemAPI.Controllers
             _bookRepository = iBookRepository;
         }
 
+        // this method returns list of all books 
+
         [HttpGet("[action]")]
         public ActionResult GetAllBooks()
         {
@@ -31,6 +33,7 @@ namespace LibraryManagementSystemAPI.Controllers
         }
 
 
+        // Add new book 
 
         [HttpPost("[action]")]
         public ActionResult AddBook(Book book)
@@ -41,6 +44,8 @@ namespace LibraryManagementSystemAPI.Controllers
            int id = _bookRepository.AddBook(book);
             return Ok(id);
         }
+
+        // One book informations by id 
 
         [HttpPut("[action]/{id}")]
         public ActionResult EditBook(int id ,[FromBody] Book? book)
@@ -56,9 +61,8 @@ namespace LibraryManagementSystemAPI.Controllers
             return NoContent();
 
         }
-
+        //Delete book
         [HttpDelete("[action]/{id}")]
-
         public ActionResult DeleteBook(int id)
         {
             if (_bookRepository.GetBookById(id) == null)

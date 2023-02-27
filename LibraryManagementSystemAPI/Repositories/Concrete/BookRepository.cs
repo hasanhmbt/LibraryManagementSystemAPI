@@ -13,7 +13,6 @@ namespace LibraryManagementSystemAPI.Repositories.Concrete
         public List<Book> GetAllBooks()
         {
             SqlHelper sqlHelper = new SqlHelper();
-            List<Book> Books = new List<Book>();
             var data = sqlHelper.ExecuteNonQueryAsDataTable(query: "select *from vw_Books");
             var jsonString = JsonConvert.SerializeObject(data);
             List<Book> books = JsonConvert.DeserializeObject<List<Book>>(jsonString);

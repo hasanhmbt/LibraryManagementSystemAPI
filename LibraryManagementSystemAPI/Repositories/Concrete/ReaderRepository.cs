@@ -19,13 +19,12 @@ namespace LibraryManagementSystemAPI.Repositories.Concrete
             return reader;
         }
 
-        public List<Reader> GetReadersCombo( )
+        public List<DropdownItems> GetReadersCombo( )
         {
             SqlHelper sqlHelper = new SqlHelper();
-            List<Reader> Readers = new List<Reader>();
             var data = sqlHelper.ExecuteNonQueryAsDataTable(query: "Select -1 as Id, N'Seçilməyib' as Name union  Select Id, Name from Readers;");
             string jsonstring = JsonConvert.SerializeObject(data);
-            List<Reader> reader = JsonConvert.DeserializeObject<List<Reader>>(jsonstring);
+            List<DropdownItems> reader = JsonConvert.DeserializeObject<List<DropdownItems>>(jsonstring);
             return reader;
         }
 

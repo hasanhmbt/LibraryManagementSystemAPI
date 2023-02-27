@@ -1,8 +1,6 @@
 ﻿using LibraryManagementSystemAPI.Entities;
 using LibraryManagementSystemAPI.Repositories.Abstract;
-using LibraryManagementSystemAPI.Repositories.Concrete;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LibraryManagementSystemAPI.Controllers
@@ -19,27 +17,31 @@ namespace LibraryManagementSystemAPI.Controllers
         {
             _operationRepository= operationRepository;
         }
-        [HttpGet("[action]")]
 
+        // Returns Operation list
+        [HttpGet("[action]")]
         public ActionResult GetAllOperations()
         {
             return Ok(_operationRepository.GetAllOperations());
         }
 
 
+        // Retunrs book list for operation (dropdown list)
         [HttpGet("[action]")]
         public ActionResult GetBooksCombo()
         {
             return Ok(_operationRepository.GetBooksCombo());
         }
 
-
+        // Retrun one operation infromations by id 
         [HttpGet("[action]/{id}")]
         public ActionResult GetOperationById(int id)
         {
             return Ok(_operationRepository.GetOperationById(id));
         }
 
+
+        // Add new operation
         [HttpPost("[action]")]
         public ActionResult AddOperation(Operation operation)
         {
@@ -50,7 +52,7 @@ namespace LibraryManagementSystemAPI.Controllers
             return CreatedAtAction(nameof(AddOperation), new { id = newId }, null);
         }
 
-
+        //  Edit an existing operations
         [HttpPut("[action]/{id}")]
         public ActionResult EditOperation(int id, [FromBody] Operation?  operation)
         {
@@ -66,6 +68,7 @@ namespace LibraryManagementSystemAPI.Controllers
 
         }
 
+        // Delete one operation from list 
         [HttpDelete("[action]/{id}")]
         public ActionResult DeleteOperations(int id)
         {

@@ -17,47 +17,49 @@ namespace LibraryManagementSystemAPI.Controllers
         }
 
 
+        //Return list of users
          [HttpGet("[action]")]
-
         public ActionResult GetAllUsers()
         {
             return Ok(_userRepository.GetAllUsers());
         }
 
- 
 
+        // Retrun one user infromations by id 
         [HttpGet("[action]/{id}")]
         public ActionResult GetUserById(int id)
         {
             return Ok(_userRepository.GetUserById(id));
         }
 
+        // Add new user
         [HttpPost("[action]")]
-        public ActionResult AddUser(User User)
+        public ActionResult AddUser(User user)
         {
-            if (User == null)
+            if (user == null)
                 return BadRequest();
 
-            int newId = _userRepository.AddUsers(User);
+            int newId = _userRepository.AddUsers(user);
             return CreatedAtAction(nameof(AddUser), new { id = newId }, null);
         }
 
-
+        //  Edit an existing user
         [HttpPut("[action]/{id}")]
-        public ActionResult EditUser(int id, [FromBody] User? User)
+        public ActionResult EditUser(int id, [FromBody] User? user)
         {
-            if (User == null || User.Email == null || User.Name == null || User.Status == null)
+            if (user == null || user.Email == null || user.Name == null || user.Status == null)
                 return BadRequest();
 
             if (_userRepository.GetUserById(id) == null)
                 return NotFound();
 
-            User.Id = id;
-            _userRepository.EditUser(User);
+            user.Id = id;
+            _userRepository.EditUser(user);
             return NoContent();
-
         }
 
+
+        //Delete user
         [HttpDelete("[action]/{id}")]
         public ActionResult DeleteUsers(int id)
         {
@@ -69,8 +71,6 @@ namespace LibraryManagementSystemAPI.Controllers
             return NoContent();
 
         }
-
-
 
     }
 }

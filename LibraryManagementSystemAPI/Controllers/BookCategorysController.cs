@@ -16,13 +16,15 @@ namespace LibraryManagementSystemAPI.Controllers
         {
             _bookCategoryRepository = bookCategoryRepository;
         }
-        [HttpGet("[action]")]
 
+        //Returns category informations
+        [HttpGet("[action]")]
         public ActionResult GetAllCategories()
         {
             return Ok(_bookCategoryRepository.GetAllCategories());
         }
 
+        // Retunrs category list for dropdown 
 
         [HttpGet("[action]")]
         public ActionResult GetBookCategorysCombo()
@@ -30,13 +32,14 @@ namespace LibraryManagementSystemAPI.Controllers
             return Ok(_bookCategoryRepository.GetCategoriesCombo());
         }
 
-
+        // Retrun one category infromations by id 
         [HttpGet("[action]/{id}")]
         public ActionResult GetBookCategoryById(int id)
         {
             return Ok(_bookCategoryRepository.GetCategoryById(id));
         }
 
+        // Add new category
         [HttpPost("[action]")]
         public ActionResult AddBookCategory(BookCategory BookCategory)
         {
@@ -47,7 +50,7 @@ namespace LibraryManagementSystemAPI.Controllers
             return CreatedAtAction(nameof(AddBookCategory), new { id = newId }, null);
         }
 
-
+        //  Edit an existing category
         [HttpPut("[action]/{id}")]
         public ActionResult EditBookCategory(int id, [FromBody] BookCategory? BookCategory)
         {
@@ -63,6 +66,7 @@ namespace LibraryManagementSystemAPI.Controllers
 
         }
 
+        // Delete one category from list 
         [HttpDelete("[action]/{id}")]
         public ActionResult DeleteBookCategorys(int id)
         {

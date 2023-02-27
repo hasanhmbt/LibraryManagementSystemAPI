@@ -68,7 +68,7 @@ namespace LibraryManagementSystemAPIAPI.ADONET_Manager
         }
 
 
-        public DataTable ExecuteNonQueryAsDataTable(string query, CommandType commandType = CommandType.Text, List<SqlParameter> parameters = null)
+        public DataTable ExecuteNonQueryAsDataTable(string query, CommandType commandType = CommandType.Text, List<SqlParameter> parameters= null )
         {
             ConnectionManager connectionManager= new ConnectionManager();
             using (SqlConnection  connection = connectionManager.Openconnection())

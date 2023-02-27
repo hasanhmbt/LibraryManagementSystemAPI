@@ -12,15 +12,11 @@ namespace LibraryManagementSystemAPI.Repositories.Concrete
     {
         public List<Operation> GetAllOperations( )
         {
-           
-
             SqlHelper sqlHelper = new SqlHelper();
             var data = sqlHelper.ExecuteNonQueryAsDataTable(query: "select *from  vw_Operations;");
             string jsonstring = JsonConvert.SerializeObject(data);
             List<Operation> operations = JsonConvert.DeserializeObject<List<Operation>>(jsonstring);
             return operations;
-
-
         }
 
         public Operation GetOperationById(int id)
@@ -46,12 +42,12 @@ namespace LibraryManagementSystemAPI.Repositories.Concrete
             return null;
         }
 
-        public List<Operation> GetBooksCombo()
+        public List<DropdownItems> GetBooksCombo()
         {
             SqlHelper sqlHelper = new SqlHelper();
             var data = sqlHelper.ExecuteNonQueryAsDataTable(query: "Select -1 as Id, N'Seçilməyib' as Name union all Select b.Id, b.Name from Books b left join Operations o on o.BookId=b.Id and o.AcceptStatus=0 group by b.Id, b.Name, b.Count having count(o.Id)<b.Count");
             string jsonstring = JsonConvert.SerializeObject(data);
-            List<Operation> operations = JsonConvert.DeserializeObject<List<Operation>>(jsonstring);
+            List<DropdownItems> operations = JsonConvert.DeserializeObject<List<DropdownItems>>(jsonstring);
             return operations;
         }
 

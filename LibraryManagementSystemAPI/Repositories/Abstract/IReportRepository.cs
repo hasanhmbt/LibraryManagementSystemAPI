@@ -10,10 +10,8 @@ namespace LibraryManagementSystemAPI.Repositories.Abstract
 {
     public interface IReportRepository
     {
-
-        List<Report> GetBookCuntReports (Report report);
-        List<Report> GetOperationCountReports(Report report);
-
+        List<BookCountReport> GetBookCountReports(  string beginDate = "", string endDate = "");
+        List<OperationReports> GetOperationCountReports(  string beginDate = "", string endDate = "");
 
 
     }

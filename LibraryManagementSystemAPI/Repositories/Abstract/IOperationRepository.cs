@@ -13,7 +13,7 @@ namespace LibraryManagementSystemAPI.Repositories.Abstract
     public interface IOperationRepository
     {
         List<Operation> GetAllOperations();
-        List<Operation> GetBooksCombo();
+        List<DropdownItems> GetBooksCombo();
 
         Operation GetOperationById(int id);
         void DeleteOperations(int operationIds);

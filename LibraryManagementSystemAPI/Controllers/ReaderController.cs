@@ -19,27 +19,28 @@ namespace LibraryManagementSystemAPI.Controllers
             _ReaderRepository = readerRepository;
         }
 
+        // Retruns readers informations list
         [HttpGet("[action]")]
-
         public ActionResult GetAllReaders()
         {
             return Ok(_ReaderRepository.GetAllReaders());
         }
 
-
+        // Readers list for dropdown list 
         [HttpGet("[action]")]
         public ActionResult GetReadersCombo()
         {
             return Ok(_ReaderRepository.GetReadersCombo());
         }
 
-
+        // returns one reader informations  by id 
         [HttpGet("[action]/{id}")]
         public ActionResult GetReaderById(int id)
         {
             return Ok(_ReaderRepository.GetReaderById(id));
         }
-
+        
+        // Add new reader
         [HttpPost("[action]")]
         public ActionResult AddReader(Reader reader)
         {
@@ -50,6 +51,7 @@ namespace LibraryManagementSystemAPI.Controllers
             return CreatedAtAction(nameof(AddReader), new { id = newId }, null);
         }
 
+        //  Edit an existing reader
 
         [HttpPut("[action]/{id}")]
         public ActionResult EditReader(int id, [FromBody] Reader? reader)
@@ -66,6 +68,7 @@ namespace LibraryManagementSystemAPI.Controllers
 
         }
 
+        // Delete reader
         [HttpDelete("[action]/{id}")]
         public ActionResult DeleteReaders(int id)
         {
