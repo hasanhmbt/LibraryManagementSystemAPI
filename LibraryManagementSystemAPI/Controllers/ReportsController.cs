@@ -20,15 +20,25 @@ namespace LibraryManagementSystemAPI.Controllers
             _reportRepository = reportRepository;
         }
 
-
+        /// <summary>
+        /// Get book count report
+        /// </summary>
+        /// <param name="beginDate"></param>
+        /// <param name="endDate"></param>
+        /// <returns>report table</returns>
         [HttpGet("[action]")]
-        public ActionResult GetBookCuntReports(string beginDate, string endDate )
+        public ActionResult GetBookCountReports(string beginDate, string endDate )
         {
             return Ok(_reportRepository.GetBookCountReports(beginDate , endDate));
         }
 
-
-       [HttpGet("[action]")]
+        /// <summary>
+        /// get operation count reports
+        /// </summary>
+        /// <param name="beginDate"></param>
+        /// <param name="endDate"></param>
+        /// <returns>report table</returns>
+        [HttpGet("[action]")]
 
         public ActionResult GetOperationCountReports(string beginDate, string endDate)
         {

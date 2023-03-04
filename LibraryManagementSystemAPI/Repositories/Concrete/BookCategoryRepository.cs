@@ -4,6 +4,7 @@ using LibraryManagementSystemAPIAPI.ADONET_Manager;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -17,24 +18,33 @@ namespace LibraryManagementSystemAPI.Repositories.Concrete
 
 
 
-        public List<BookCategory> GetAllCategories()
+        public List<DropdownItems> GetAllCategories()
         {
             SqlHelper sqlHelper = new SqlHelper();
             var data = sqlHelper.ExecuteNonQueryAsDataTable(query: "Select Id, Name from BookCategories;");
             string jsonstring = JsonConvert.SerializeObject(data);
-            List<BookCategory> bookCategory = JsonConvert.DeserializeObject<List<BookCategory>>(jsonstring);
+            List<DropdownItems> bookCategory = JsonConvert.DeserializeObject<List<DropdownItems>>(jsonstring);
             return bookCategory;
         }
 
 
-        public List<BookCategory> GetCategoriesCombo()
+        public List<DropdownItems> GetCategoriesCombo()
         {
 
             SqlHelper sqlHelper = new SqlHelper();
             var data = sqlHelper.ExecuteNonQueryAsDataTable(query: "Select -1 as Id, N'Seçilməyib' as Name union  Select Id, Name from BookCategories;");
-            string jsonstring = JsonConvert.SerializeObject(data);
-            List<BookCategory> bookCategory = JsonConvert.DeserializeObject<List<BookCategory>>(jsonstring);
-            return bookCategory;
+            List<DropdownItems> items = new List<DropdownItems>();
+            //string jsonstring = JsonConvert.SerializeObject(data);
+            //List<DropdownItems> bookCategory = JsonConvert.DeserializeObject<List<DropdownItems>>(jsonstring);
+            foreach (DataRow row in data.Rows)
+            {
+                DropdownItems item = new DropdownItems();
+                item.Id = Convert.ToInt32(row["id"]);
+                item.Name = Convert.ToString(row["Name"]);
+                items.Add(item);
+
+            }
+            return items;
              
         }
 

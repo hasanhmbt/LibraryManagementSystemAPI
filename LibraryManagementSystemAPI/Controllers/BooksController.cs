@@ -18,7 +18,10 @@ namespace LibraryManagementSystemAPI.Controllers
             _bookRepository = iBookRepository;
         }
 
-        // this method returns list of all books 
+        /// <summary>
+        /// this method returns list of all books 
+        /// </summary>
+        /// <returns></returns>
 
         [HttpGet("[action]")]
         public ActionResult GetAllBooks()
@@ -26,6 +29,12 @@ namespace LibraryManagementSystemAPI.Controllers
             return Ok(_bookRepository.GetAllBooks());
         }
 
+
+        /// <summary>
+        /// get a book by id 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("[action]/{id}")]
         public ActionResult GetBookById(int id)
         {
@@ -33,7 +42,11 @@ namespace LibraryManagementSystemAPI.Controllers
         }
 
 
-        // Add new book 
+        /// <summary>
+        /// Add new book 
+        /// </summary>
+        /// <param name="book"></param>
+        /// <returns></returns>
 
         [HttpPost("[action]")]
         public ActionResult AddBook(Book book)
@@ -45,7 +58,12 @@ namespace LibraryManagementSystemAPI.Controllers
             return Ok(id);
         }
 
-        // One book informations by id 
+        /// <summary>
+        /// One book informations by id 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="book"></param>
+        /// <returns></returns>
 
         [HttpPut("[action]/{id}")]
         public ActionResult EditBook(int id ,[FromBody] Book? book)
@@ -61,7 +79,11 @@ namespace LibraryManagementSystemAPI.Controllers
             return NoContent();
 
         }
-        //Delete book
+        /// <summary>
+        /// Delete book
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("[action]/{id}")]
         public ActionResult DeleteBook(int id)
         {

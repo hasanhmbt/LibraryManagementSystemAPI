@@ -18,7 +18,10 @@ namespace LibraryManagementSystemAPI.Controllers
             _operationRepository= operationRepository;
         }
 
-        // Returns Operation list
+        /// <summary>
+        /// Returns Operation list
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("[action]")]
         public ActionResult GetAllOperations()
         {
@@ -26,14 +29,21 @@ namespace LibraryManagementSystemAPI.Controllers
         }
 
 
-        // Retunrs book list for operation (dropdown list)
+        /// <summary>
+        /// Retunrs book list for operation (dropdown list)
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("[action]")]
         public ActionResult GetBooksCombo()
         {
             return Ok(_operationRepository.GetBooksCombo());
         }
 
-        // Retrun one operation infromations by id 
+        /// <summary>
+        /// Retrun one operation infromations by id 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("[action]/{id}")]
         public ActionResult GetOperationById(int id)
         {
@@ -41,7 +51,11 @@ namespace LibraryManagementSystemAPI.Controllers
         }
 
 
-        // Add new operation
+        /// <summary>
+        /// Add new operation
+        /// </summary>
+        /// <param name="operation"></param>
+        /// <returns></returns>
         [HttpPost("[action]")]
         public ActionResult AddOperation(Operation operation)
         {
@@ -52,7 +66,12 @@ namespace LibraryManagementSystemAPI.Controllers
             return CreatedAtAction(nameof(AddOperation), new { id = newId }, null);
         }
 
-        //  Edit an existing operations
+        /// <summary>
+        ///  Edit an existing operations
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="operation"></param>
+        /// <returns></returns>
         [HttpPut("[action]/{id}")]
         public ActionResult EditOperation(int id, [FromBody] Operation?  operation)
         {
@@ -68,7 +87,11 @@ namespace LibraryManagementSystemAPI.Controllers
 
         }
 
-        // Delete one operation from list 
+        /// <summary>
+        /// Delete one operation from list 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("[action]/{id}")]
         public ActionResult DeleteOperations(int id)
         {

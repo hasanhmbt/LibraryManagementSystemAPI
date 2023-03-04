@@ -11,8 +11,8 @@ namespace LibraryManagementSystemAPI.Repositories.Abstract
     public interface IBookCategoryRepository
     {
 
-        List<BookCategory> GetAllCategories( );
-        List<BookCategory> GetCategoriesCombo();
+        List<DropdownItems> GetAllCategories( );
+        List<DropdownItems> GetCategoriesCombo();
         void DeleteCategory(int categoryId);
 
         int AddCategory(BookCategory bookCategory);

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace LibraryManagementSystemAPI.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
+     [ApiController]
     public class BookCategorysController : ControllerBase
     {
 
@@ -17,56 +17,79 @@ namespace LibraryManagementSystemAPI.Controllers
             _bookCategoryRepository = bookCategoryRepository;
         }
 
-        //Returns category informations
+        /// <summary>
+        /// Returns category informations
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("[action]")]
         public ActionResult GetAllCategories()
         {
             return Ok(_bookCategoryRepository.GetAllCategories());
         }
 
-        // Retunrs category list for dropdown 
+        /// <summary>
+        /// Retunrs category list for dropdown 
+        /// </summary>
+        /// <returns></returns>
 
         [HttpGet("[action]")]
-        public ActionResult GetBookCategorysCombo()
+        public ActionResult GetBookCategorysCombo() 
         {
             return Ok(_bookCategoryRepository.GetCategoriesCombo());
         }
 
-        // Retrun one category infromations by id 
+        /// <summary>
+        /// Retrun one category infromations by id 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("[action]/{id}")]
         public ActionResult GetBookCategoryById(int id)
         {
             return Ok(_bookCategoryRepository.GetCategoryById(id));
         }
 
-        // Add new category
+        /// <summary>
+        /// Add new category
+        /// </summary>
+        /// <param name="bookCategory"></param>
+        /// <returns></returns>
         [HttpPost("[action]")]
-        public ActionResult AddBookCategory(BookCategory BookCategory)
+        public ActionResult AddBookCategory(BookCategory bookCategory)
         {
-            if (BookCategory == null)
+            if (bookCategory == null)
                 return BadRequest();
 
-            int newId = _bookCategoryRepository.AddCategory(BookCategory);
+            int newId = _bookCategoryRepository.AddCategory(bookCategory);
             return CreatedAtAction(nameof(AddBookCategory), new { id = newId }, null);
         }
 
-        //  Edit an existing category
+        /// <summary>
+        ///  Edit an existing category
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="bookCategory"></param>
+        /// <returns></returns>
         [HttpPut("[action]/{id}")]
-        public ActionResult EditBookCategory(int id, [FromBody] BookCategory? BookCategory)
+        public ActionResult EditBookCategory(int id, [FromBody] BookCategory? bookCategory)
         {
-            if (  BookCategory.Id == null || BookCategory.Name == null || BookCategory.Status == null)
+            if (bookCategory.Id == null || bookCategory.Name == null || bookCategory.Status == null)
                 return BadRequest();
 
             if (_bookCategoryRepository.GetCategoryById(id) == null)
                 return NotFound();
 
-            BookCategory.Id = id;
-            _bookCategoryRepository.UpdateCategory(BookCategory);
+            bookCategory.Id = id;
+            _bookCategoryRepository.UpdateCategory(bookCategory);
             return NoContent();
 
         }
 
-        // Delete one category from list 
+        /// <summary>
+        /// Delete one category from list 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("[action]/{id}")]
         public ActionResult DeleteBookCategorys(int id)
         {

@@ -17,7 +17,10 @@ namespace LibraryManagementSystemAPI.Controllers
         }
 
 
-        //Return list of users
+        /// <summary>
+        /// Return list of users
+        /// </summary>
+        /// <returns></returns>
          [HttpGet("[action]")]
         public ActionResult GetAllUsers()
         {
@@ -25,14 +28,22 @@ namespace LibraryManagementSystemAPI.Controllers
         }
 
 
-        // Retrun one user infromations by id 
+        /// <summary>
+        /// Retrun one user infromations by id 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("[action]/{id}")]
         public ActionResult GetUserById(int id)
         {
             return Ok(_userRepository.GetUserById(id));
         }
 
-        // Add new user
+        /// <summary>
+        /// Add new user
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         [HttpPost("[action]")]
         public ActionResult AddUser(User user)
         {
@@ -43,7 +54,12 @@ namespace LibraryManagementSystemAPI.Controllers
             return CreatedAtAction(nameof(AddUser), new { id = newId }, null);
         }
 
-        //  Edit an existing user
+        /// <summary>
+        ///  Edit an existing user
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="user"></param>
+        /// <returns></returns>
         [HttpPut("[action]/{id}")]
         public ActionResult EditUser(int id, [FromBody] User? user)
         {
@@ -59,7 +75,11 @@ namespace LibraryManagementSystemAPI.Controllers
         }
 
 
-        //Delete user
+        /// <summary>
+        /// Delete user
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("[action]/{id}")]
         public ActionResult DeleteUsers(int id)
         {

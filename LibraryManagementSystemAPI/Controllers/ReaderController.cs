@@ -19,28 +19,42 @@ namespace LibraryManagementSystemAPI.Controllers
             _ReaderRepository = readerRepository;
         }
 
-        // Retruns readers informations list
+        /// <summary>
+        /// Retruns readers informations list
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("[action]")]
         public ActionResult GetAllReaders()
         {
             return Ok(_ReaderRepository.GetAllReaders());
         }
 
-        // Readers list for dropdown list 
+        /// <summary>
+        /// Readers list for dropdown list 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("[action]")]
         public ActionResult GetReadersCombo()
         {
             return Ok(_ReaderRepository.GetReadersCombo());
         }
 
-        // returns one reader informations  by id 
+        /// <summary>
+        /// returns one reader informations  by id 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("[action]/{id}")]
         public ActionResult GetReaderById(int id)
         {
             return Ok(_ReaderRepository.GetReaderById(id));
         }
         
-        // Add new reader
+        /// <summary>
+        /// Add new reader
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <returns></returns>
         [HttpPost("[action]")]
         public ActionResult AddReader(Reader reader)
         {
@@ -51,7 +65,12 @@ namespace LibraryManagementSystemAPI.Controllers
             return CreatedAtAction(nameof(AddReader), new { id = newId }, null);
         }
 
-        //  Edit an existing reader
+        /// <summary>
+        ///  Edit an existing reader
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="reader"></param>
+        /// <returns></returns>
 
         [HttpPut("[action]/{id}")]
         public ActionResult EditReader(int id, [FromBody] Reader? reader)
@@ -68,7 +87,11 @@ namespace LibraryManagementSystemAPI.Controllers
 
         }
 
-        // Delete reader
+        /// <summary>
+        /// Delete reader
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("[action]/{id}")]
         public ActionResult DeleteReaders(int id)
         {
